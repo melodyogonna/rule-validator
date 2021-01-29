@@ -4,7 +4,7 @@
   "description": "Simple rule validator",
   "main": "index.js",
   "scripts": {
-    "test": "jest test"
+    "test": "npx jest"
   },
   "repository": {
     "type": "git",
