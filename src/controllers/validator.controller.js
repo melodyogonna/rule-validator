@@ -6,7 +6,7 @@ const express = require("express");
  */
 function validateRule(request, response) {
   const { rule, data } = request.body;
-  return;
+  return response.status(200).json({ message: "success" });
 }
 
 module.exports = {
