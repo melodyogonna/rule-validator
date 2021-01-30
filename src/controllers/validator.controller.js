@@ -1,9 +1,9 @@
 const express = require("express");
 const { validateRuleService } = require("../services/validator.service");
 
-/** Controller to return my personal informations when home route is visited
- * @param {express.Request} request - Express request object
- * @param {express.Response} response - Express response object
+/** Controller to validate fields against passed-in parameters
+ * @param {express.Request} request
+ * @param {express.Response} response
  */
 function validateRule(request, response) {
   const { rule, data } = request.body;

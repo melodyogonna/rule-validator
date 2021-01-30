@@ -9,7 +9,7 @@ const express = require("express");
 
 function missingFieldHandler(error, request, response, next) {
   if (error.cause === "missingfield") {
-    const message = `${error.data.field} is required.`;
+    const message = error.message;
     return response.status(400).json({ message, status: error, data: null });
   } else {
     next(error);
@@ -25,7 +25,8 @@ function missingFieldHandler(error, request, response, next) {
 
 function wrongTypeHandler(error, request, response, next) {
   if (error.cause === "wrongtype") {
-    const message = `${error.data.field} should be ${error.data.expectedField}`;
+    console.log(error);
+    const message = error.message;
     return response.status(400).json({ message, status: error, data: null });
   } else {
     next(error);
