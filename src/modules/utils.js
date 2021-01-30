@@ -1,4 +1,8 @@
-const { MissingFieldError, WrongTypeError } = require('../errors');
+const {
+  MissingFieldError,
+  WrongTypeError,
+  TooDeeplyNestedError,
+} = require('../errors');
 
 const RULES = {
   eq: validateEQ,
@@ -31,7 +35,7 @@ function validateGTE(rule, data) {
   const conditionValue = rule.conditionValue;
 
   if (!data[field]) {
-    throw new MissingFieldError({}, `field ${field} missing from data`);
+    throw new MissingFieldError(`field ${field} missing from data`);
   }
 
   return data[field] >= conditionValue;
@@ -42,7 +46,7 @@ function validateEQ(rule, data) {
   const conditionValue = rule.conditionValue;
 
   if (!data[field]) {
-    throw new MissingFieldError({}, `field ${field} missing from data`);
+    throw new MissingFieldError(`field ${field} missing from data`);
   }
 
   return data[field] === conditionValue;
@@ -53,7 +57,7 @@ function validateGT(rule, data) {
   const conditionValue = rule.conditionValue;
 
   if (!data[field]) {
-    throw new MissingFieldError({}, `field ${field} missing from data`);
+    throw new MissingFieldError(`field ${field} missing from data`);
   }
 
   return data[field] > conditionValue;
@@ -64,7 +68,7 @@ function validateNEQ(rule, data) {
   const conditionValue = rule.conditionValue;
 
   if (!data[field]) {
-    throw new MissingFieldError({}, `field ${field} missing from data`);
+    throw new MissingFieldError(`field ${field} missing from data`);
   }
 
   return data[field] !== conditionValue;
@@ -75,10 +79,10 @@ function validateContains(rule, data) {
   const conditionValue = rule.conditionValue;
 
   if (!data[field]) {
-    throw new MissingFieldError({}, `field ${field} missing from data`);
+    throw new MissingFieldError(`field ${field} missing from data`);
   }
 
-  return data[field].contains(conditionValue);
+  return data[field].includes(conditionValue);
 }
 
 module.exports = {

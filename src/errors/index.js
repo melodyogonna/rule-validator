@@ -1,32 +1,39 @@
 class HTTPError extends Error {
-  constructor(data, ...params) {
+  constructor(...params) {
     super(...params);
-    this.name = "HTTPError";
-    this.data = data;
+    this.name = 'HTTPError';
   }
 }
 
 class MissingFieldError extends HTTPError {
   constructor(...params) {
     super(...params);
-    this.name = "MissingFieldError";
-    this.cause = "missing field";
+    this.name = 'MissingFieldError';
+    this.cause = 'missingfield';
   }
 }
 
 class MissingRuleError extends HTTPError {
   constructor(...params) {
     super(...params);
-    this.name = "MissingRuleError";
-    this.cause = "missing rule";
+    this.name = 'MissingRuleError';
+    this.cause = 'missingrule';
   }
 }
 
 class WrongTypeError extends HTTPError {
   constructor(...params) {
     super(...params);
-    this.name = "WrongTypeError";
-    this.cause = "wrong type";
+    this.name = 'WrongTypeError';
+    this.cause = 'wrongtype';
+  }
+}
+
+class TooDeeplyNestedError extends HTTPError {
+  constructor(...params) {
+    super(...params);
+    this.name = 'TooDeeplyNestedError';
+    this.cause = 'deepnesting';
   }
 }
 
@@ -35,4 +42,5 @@ module.exports = {
   MissingFieldError,
   MissingRuleError,
   WrongTypeError,
+  TooDeeplyNestedError,
 };

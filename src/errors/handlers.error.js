@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 
 /** error handler for missing fields
  *@param {express.Error} error
@@ -8,7 +8,7 @@ const express = require("express");
  */
 
 function missingFieldHandler(error, request, response, next) {
-  if (error.cause === "missingfield") {
+  if (error.cause === 'missingfield') {
     const message = error.message;
     return response.status(400).json({ message, status: error, data: null });
   } else {
@@ -24,7 +24,7 @@ function missingFieldHandler(error, request, response, next) {
  */
 
 function wrongTypeHandler(error, request, response, next) {
-  if (error.cause === "wrongtype") {
+  if (error.cause === 'wrongtype') {
     console.log(error);
     const message = error.message;
     return response.status(400).json({ message, status: error, data: null });
@@ -33,4 +33,21 @@ function wrongTypeHandler(error, request, response, next) {
   }
 }
 
-module.exports = { missingFieldHandler, wrongTypeHandler };
+/** error handler for wrong types
+ *@param {express.Error} error
+ *@param {express.Request} request
+ *@param {express.Response} response
+ *@param {express.NextFunction} next
+ */
+
+function tooDeepHandler(error, request, response, next) {
+  if (error.cause === 'deepnesting') {
+    console.log(error);
+    const message = error.message;
+    return response.status(400).json({ message, status: error, data: null });
+  } else {
+    next(error);
+  }
+}
+
+module.exports = { missingFieldHandler, wrongTypeHandler, tooDeepHandler };
