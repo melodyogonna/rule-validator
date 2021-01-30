@@ -1,17 +1,4 @@
-const RULES = {
-  gte: validateGTE,
-};
-
-function chooseValidator(condition) {
-  return RULES[condition];
-}
-
-function validateGTE(rule, data) {
-  const field = rule.field;
-  const conditionValue = rule.conditionValue;
-
-  return data[field] >= conditionValue;
-}
+const { chooseValidator, validateGTE } = require("../modules/utils");
 
 /** Function for validating the correct rule
  * @param {object} rule - rule validation is for
@@ -19,5 +6,7 @@ function validateGTE(rule, data) {
  */
 function validateRuleService(rule, data) {
   const validatorFunction = chooseValidator(rule.condition);
-  validatorFunction(rule, data);
+  return validatorFunction(rule, data);
 }
+
+module.exports = { validateRuleService };
