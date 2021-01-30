@@ -6,6 +6,8 @@ const express = require("express");
  */
 function validateRule(request, response) {
   const { rule, data } = request.body;
+
+  const responseData = validateRuleService(rule, data);
   return response.status(200).json({ message: "success" });
 }
 
