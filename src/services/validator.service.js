@@ -1,4 +1,8 @@
-const { chooseValidator, validateGTE } = require("../modules/utils");
+const { chooseValidator } = require("../modules/utils");
+const {
+  validationFailure,
+  validationFailure,
+} = require("../modules/helperfunctions");
 
 /** Function for validating the correct rule
  * @param {object} rule - rule validation is for
@@ -6,7 +10,12 @@ const { chooseValidator, validateGTE } = require("../modules/utils");
  */
 function validateRuleService(rule, data) {
   const validatorFunction = chooseValidator(rule.condition);
-  return validatorFunction(rule, data);
+
+  if (validatorFunction(rule, data)) {
+    return validationSuccess(rule);
+  } else {
+    return validationFailure(rule);
+  }
 }
 
 module.exports = { validateRuleService };
