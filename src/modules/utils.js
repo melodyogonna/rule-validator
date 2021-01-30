@@ -1,7 +1,11 @@
 const { MissingFieldError, WrongTypeError } = require('../errors');
 
 const RULES = {
+  eq: validateEQ,
   gte: validateGTE,
+  gt: validateGT,
+  neq: validateNEQ,
+  contains: validateContains,
 };
 
 function verifyPassedParameters(rule, data) {
@@ -25,14 +29,64 @@ function chooseValidator(condition) {
 function validateGTE(rule, data) {
   const field = rule.field;
   const conditionValue = rule.conditionValue;
+
   if (!data[field]) {
     throw new MissingFieldError({}, `field ${field} missing from data`);
   }
-  return conditionValue >= data[field];
+
+  return data[field] >= conditionValue;
+}
+
+function validateEQ(rule, data) {
+  const field = rule.field;
+  const conditionValue = rule.conditionValue;
+
+  if (!data[field]) {
+    throw new MissingFieldError({}, `field ${field} missing from data`);
+  }
+
+  return data[field] === conditionValue;
+}
+
+function validateGT(rule, data) {
+  const field = rule.field;
+  const conditionValue = rule.conditionValue;
+
+  if (!data[field]) {
+    throw new MissingFieldError({}, `field ${field} missing from data`);
+  }
+
+  return data[field] > conditionValue;
+}
+
+function validateNEQ(rule, data) {
+  const field = rule.field;
+  const conditionValue = rule.conditionValue;
+
+  if (!data[field]) {
+    throw new MissingFieldError({}, `field ${field} missing from data`);
+  }
+
+  return data[field] !== conditionValue;
+}
+
+function validateContains(rule, data) {
+  const field = rule.field;
+  const conditionValue = rule.conditionValue;
+
+  if (!data[field]) {
+    throw new MissingFieldError({}, `field ${field} missing from data`);
+  }
+
+  return data[field].contains(conditionValue);
 }
 
 module.exports = {
   chooseValidator,
   validateGTE,
   verifyPassedParameters,
+  validateEQ,
+  validateGT,
+  validateNEQ,
+  validateContains,
 };
