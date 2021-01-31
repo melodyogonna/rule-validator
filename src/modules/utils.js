@@ -1,8 +1,4 @@
-const {
-  MissingFieldError,
-  WrongTypeError,
-  TooDeeplyNestedError,
-} = require('../errors');
+const { MissingFieldError, WrongTypeError } = require('../errors');
 
 const RULES = {
   eq: validateEQ,
