@@ -38,7 +38,6 @@ function validateGTE(rule, data) {
     throw new MissingFieldError(`field ${field} missing from data.`);
   }
 
-  console.log(typeof conditionValue);
   return data[field] >= conditionValue;
 }
 
