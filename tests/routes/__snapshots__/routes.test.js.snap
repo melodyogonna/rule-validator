@@ -2,21 +2,14 @@
 
 exports[`should return relevant personal details 1`] = `
 Object {
-  "header": Object {
-    "connection": "close",
-    "content-length": "196",
-    "content-type": "application/json; charset=utf-8",
-    "date": "Fri, 29 Jan 2021 22:30:28 GMT",
-    "etag": "W/\\"c4-obVcZmINjhxgt5yeo3k6rYYAsmc\\"",
-    "x-powered-by": "Express",
+  "data": Object {
+    "email": "melodyogonna@gmail.com",
+    "github": "@melodyogonna",
+    "mobile": "08122522386",
+    "name": "Anyaegbulam Melody",
+    "twitter": "@melodyogonna",
   },
-  "req": Object {
-    "data": undefined,
-    "headers": Object {},
-    "method": "GET",
-    "url": "http://127.0.0.1:46359/",
-  },
-  "status": 200,
-  "text": "{\\"message\\":\\"rule validation api\\",\\"status\\":\\"success\\",\\"data\\":{\\"name\\":\\"Anyaegbulam Melody\\",\\"github\\":\\"@melodyogonna\\",\\"email\\":\\"melodyogonna@gmail.com\\",\\"mobile\\":\\"08122522386\\",\\"twitter\\":\\"@melodyogonna\\"}}",
+  "message": "rule validation api",
+  "status": "success",
 }
 `;

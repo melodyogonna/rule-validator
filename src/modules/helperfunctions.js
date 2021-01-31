@@ -1,7 +1,7 @@
 function validationSuccess(rule, field) {
   return {
     message: `field ${rule.field} successfully validated.`,
-    status: "success",
+    status: 'success',
     data: {
       validation: {
         error: false,
@@ -14,10 +14,10 @@ function validationSuccess(rule, field) {
   };
 }
 
-function validationFailure(rule) {
+function validationFailure(rule, field) {
   return {
     message: `field ${rule.field} failed validation.`,
-    status: "success",
+    status: 'error',
     data: {
       validation: {
         error: true,

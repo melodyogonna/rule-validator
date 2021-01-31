@@ -14,11 +14,11 @@ const RULES = {
 
 function verifyPassedParameters(rule, data) {
   if (!rule) {
-    throw new MissingFieldError({}, 'rule is required');
+    throw new MissingFieldError('rule is required.');
   } else if (!data) {
-    throw new MissingFieldError({}, 'field is required');
+    throw new MissingFieldError('field is required.');
   } else if (typeof rule !== 'object') {
-    throw new WrongTypeError({}, 'rule should be an object');
+    throw new WrongTypeError('rule should be an object.');
   }
 }
 
@@ -32,21 +32,22 @@ function chooseValidator(condition) {
 
 function validateGTE(rule, data) {
   const field = rule.field;
-  const conditionValue = rule.conditionValue;
+  const conditionValue = rule.condition_value;
 
   if (!data[field]) {
-    throw new MissingFieldError(`field ${field} missing from data`);
+    throw new MissingFieldError(`field ${field} missing from data.`);
   }
 
+  console.log(typeof conditionValue);
   return data[field] >= conditionValue;
 }
 
 function validateEQ(rule, data) {
   const field = rule.field;
-  const conditionValue = rule.conditionValue;
+  const conditionValue = rule.condition_value;
 
   if (!data[field]) {
-    throw new MissingFieldError(`field ${field} missing from data`);
+    throw new MissingFieldError(`field ${field} missing from data.`);
   }
 
   return data[field] === conditionValue;
@@ -54,10 +55,10 @@ function validateEQ(rule, data) {
 
 function validateGT(rule, data) {
   const field = rule.field;
-  const conditionValue = rule.conditionValue;
+  const conditionValue = rule.condition_value;
 
   if (!data[field]) {
-    throw new MissingFieldError(`field ${field} missing from data`);
+    throw new MissingFieldError(`field ${field} missing from data.`);
   }
 
   return data[field] > conditionValue;
@@ -65,10 +66,10 @@ function validateGT(rule, data) {
 
 function validateNEQ(rule, data) {
   const field = rule.field;
-  const conditionValue = rule.conditionValue;
+  const conditionValue = rule.condition_value;
 
   if (!data[field]) {
-    throw new MissingFieldError(`field ${field} missing from data`);
+    throw new MissingFieldError(`field ${field} missing from data.`);
   }
 
   return data[field] !== conditionValue;
@@ -76,10 +77,10 @@ function validateNEQ(rule, data) {
 
 function validateContains(rule, data) {
   const field = rule.field;
-  const conditionValue = rule.conditionValue;
+  const conditionValue = rule.condition_value;
 
   if (!data[field]) {
-    throw new MissingFieldError(`field ${field} missing from data`);
+    throw new MissingFieldError(`field ${field} missing from data.`);
   }
 
   return data[field].includes(conditionValue);

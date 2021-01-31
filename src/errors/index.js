@@ -37,10 +37,20 @@ class TooDeeplyNestedError extends HTTPError {
   }
 }
 
+class FailedValidationError extends HTTPError {
+  constructor(data, ...params) {
+    super(...params);
+    this.name = 'FailedValidationError';
+    this.cause = 'failedvalidation';
+    this.data = data;
+  }
+}
+
 module.exports = {
   HTTPError,
   MissingFieldError,
   MissingRuleError,
   WrongTypeError,
   TooDeeplyNestedError,
+  FailedValidationError,
 };

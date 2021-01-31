@@ -1,8 +1,6 @@
 const { chooseValidator, verifyPassedParameters } = require('../modules/utils');
-const {
-  validationFailure,
-  validationSuccess,
-} = require('../modules/helperfunctions');
+const { validationSuccess } = require('../modules/helperfunctions');
+const { FailedValidationError } = require('../errors');
 
 /** Function for validating the correct rule
  * @param {object} rule - rule validation is for
@@ -12,10 +10,13 @@ function validateRuleService(rule, data) {
   verifyPassedParameters(rule, data);
   const validatorFunction = chooseValidator(rule.condition);
 
-  if (validatorFunction(rule, data)) {
-    return validationSuccess(rule);
+  if (!validatorFunction(rule, data)) {
+    throw new FailedValidationError(
+      { rule, data },
+      `Field ${rule.field} failed validation`
+    );
   }
-  return validationFailure(rule);
+  return validationSuccess(rule, data);
 }
 
 module.exports = { validateRuleService };
